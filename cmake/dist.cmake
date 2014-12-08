@@ -50,8 +50,8 @@ message ( "DIST_DEPENDS: ${DIST_DEPENDS}")
 
 ## INSTALL DEFAULTS (Relative to CMAKE_INSTALL_PREFIX)
 # Primary paths
-set ( INSTALL_BIN bin CACHE PATH "Where to install binaries to." )
-set ( INSTALL_LIB lib CACHE PATH "Where to install libraries to." )
+set ( INSTALL_BIN bin${NUMBITS} CACHE PATH "Where to install binaries to." )
+set ( INSTALL_LIB lib${NUMBITS} CACHE PATH "Where to install libraries to." )
 set ( INSTALL_INC include CACHE PATH "Where to install headers to." )
 set ( INSTALL_ETC etc CACHE PATH "Where to store configuration files" )
 set ( INSTALL_SHARE share CACHE PATH "Directory for shared data." )
@@ -141,6 +141,7 @@ macro ( install_executable )
       set_target_properties ( ${_file} PROPERTIES VERSION ${DIST_VERSION}
                               SOVERSION ${DIST_VERSION} )
     endif ()
+    set_target_properties ( ${_file} PROPERTIES DEBUG_POSTFIX "-d" )
     install ( TARGETS ${_file} RUNTIME DESTINATION ${INSTALL_BIN}
               COMPONENT Runtime )
   endforeach()

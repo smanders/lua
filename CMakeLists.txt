@@ -6,6 +6,7 @@
 
 project ( lua C )
 cmake_minimum_required ( VERSION 2.8 )
+include ( flags OPTIONAL )
 include ( cmake/dist.cmake )
 
 ## CONFIGURATION
@@ -151,7 +152,7 @@ install_executable ( lua luac )
 install_library ( liblua )
 install_data ( README.md )
 #install_lua_module ( strict etc/strict.lua )
-install_header ( src/lua.h src/lualib.h src/lauxlib.h src/lua.hpp ${CMAKE_CURRENT_BINARY_DIR}/luaconf.h )
+install_header ( src/lua.h src/lualib.h src/lauxlib.h src/lua.hpp ${CMAKE_CURRENT_BINARY_DIR}/luaconf.h INTO lua )
 install_doc ( doc/ )
 install_foo ( etc/ )
 #install_test ( test/ )
