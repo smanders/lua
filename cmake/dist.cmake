@@ -161,11 +161,13 @@ macro ( install_library )
       set_target_properties ( ${_file} PROPERTIES VERSION ${DIST_VERSION}
                               SOVERSION ${DIST_VERSION} )
     endif ()
-    install ( TARGETS ${_file}
+    install ( TARGETS ${_file} EXPORT ${PROJECT_NAME}-targets
               RUNTIME DESTINATION ${INSTALL_BIN} COMPONENT Runtime
               LIBRARY DESTINATION ${INSTALL_LIB} COMPONENT Runtime 
               ARCHIVE DESTINATION ${INSTALL_LIB} COMPONENT Library )
   endforeach()
+  install ( FILES ${CMAKE_SOURCE_DIR}/cmake/usexp-${PROJECT_NAME}-config.cmake DESTINATION ${INSTALL_SHARE}/cmake )
+  install ( EXPORT ${PROJECT_NAME}-targets DESTINATION ${INSTALL_LIB}/cmake )
 endmacro ()
 
 # helper function for various install_* functions, for PATTERN/REGEX args.
