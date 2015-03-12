@@ -9,7 +9,7 @@ get_filename_component(XP_ROOTDIR "${SELF_DIR}/../.." ABSOLUTE)
 include(${XP_ROOTDIR}/lib${NUMBITS}/cmake/${prj}-targets.cmake)
 string(TOUPPER ${prj} PRJ)
 find_path(${PRJ}_INCLUDE_DIR lua/lua.h PATHS ${XP_ROOTDIR}/include NO_DEFAULT_PATH)
-set(${PRJ}_LIBRARIES lua)
+set(${PRJ}_LIBRARIES liblua)
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(${prj}
   REQUIRED_VARS
