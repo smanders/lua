@@ -166,7 +166,6 @@ macro ( install_library )
               LIBRARY DESTINATION ${INSTALL_LIB} COMPONENT Runtime 
               ARCHIVE DESTINATION ${INSTALL_LIB} COMPONENT Library )
   endforeach()
-  install ( FILES ${CMAKE_SOURCE_DIR}/cmake/usexp-${PROJECT_NAME}-config.cmake DESTINATION ${INSTALL_SHARE}/cmake )
   install ( EXPORT ${PROJECT_NAME}-targets DESTINATION ${INSTALL_LIB}/cmake )
 endmacro ()
 
