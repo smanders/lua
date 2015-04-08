@@ -89,7 +89,7 @@ if ( LUA_USE_DLOPEN )
   # Link to dynamic linker library "dl"
 	find_library ( DL_LIBRARY NAMES dl )
 	if ( DL_LIBRARY )
-  	list ( APPEND LIBS ${DL_LIBRARY} )
+  	list ( APPEND LIBS dl )
 	endif ( )
 endif ( )
 
