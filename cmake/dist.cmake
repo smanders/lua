@@ -142,7 +142,6 @@ macro ( install_executable )
                               SOVERSION ${DIST_VERSION} )
     endif ()
     set_target_properties ( ${_file} PROPERTIES DEBUG_POSTFIX "-d" )
-    set_target_properties ( ${_file} PROPERTIES RELEASEMT_POSTFIX "-s" )
     install ( TARGETS ${_file} RUNTIME DESTINATION ${INSTALL_BIN}
               COMPONENT Runtime )
   endforeach()
