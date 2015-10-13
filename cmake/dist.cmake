@@ -141,7 +141,7 @@ macro ( install_executable )
       set_target_properties ( ${_file} PROPERTIES VERSION ${DIST_VERSION}
                               SOVERSION ${DIST_VERSION} )
     endif ()
-    set_target_properties ( ${_file} PROPERTIES DEBUG_POSTFIX "-d" )
+    set_target_properties ( ${_file} PROPERTIES DEBUG_POSTFIX "${CMAKE_DEBUG_POSTFIX}" )
     install ( TARGETS ${_file} RUNTIME DESTINATION ${INSTALL_BIN}
               COMPONENT Runtime )
   endforeach()
