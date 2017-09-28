@@ -59,7 +59,7 @@ set ( INSTALL_SHARE share CACHE PATH "Directory for shared data." )
 # Secondary paths
 option ( INSTALL_VERSION
       "Install runtime libraries and executables with version information." OFF)
-set ( INSTALL_DATA ${INSTALL_SHARE}/${DIST_NAME} CACHE PATH
+set ( INSTALL_DATA ${INSTALL_SHARE}/${DIST_NAME}_${DIST_VERSION} CACHE PATH
       "Directory the package can store documentation, tests or other data in.")  
 set ( INSTALL_DOC  ${INSTALL_DATA}/doc CACHE PATH
       "Recommended directory to install documentation into.")
@@ -140,10 +140,11 @@ macro ( install_executable )
     if ( INSTALL_VERSION )
       set_target_properties ( ${_file} PROPERTIES VERSION ${DIST_VERSION}
                               SOVERSION ${DIST_VERSION} )
+    else ()
+      set_target_properties ( ${_file} PROPERTIES OUTPUT_NAME ${_file}${ver} )
     endif ()
-    set_target_properties ( ${_file} PROPERTIES DEBUG_POSTFIX "${CMAKE_DEBUG_POSTFIX}" )
     install ( TARGETS ${_file} RUNTIME DESTINATION ${INSTALL_BIN}
-              COMPONENT Runtime )
+              COMPONENT Runtime CONFIGURATIONS Release )
   endforeach()
 endmacro ()
 
@@ -160,12 +161,12 @@ macro ( install_library )
       set_target_properties ( ${_file} PROPERTIES VERSION ${DIST_VERSION}
                               SOVERSION ${DIST_VERSION} )
     endif ()
-    install ( TARGETS ${_file} EXPORT ${PROJECT_NAME}-targets
+    install ( TARGETS ${_file} EXPORT ${targetsFile}
               RUNTIME DESTINATION ${INSTALL_BIN} COMPONENT Runtime
               LIBRARY DESTINATION ${INSTALL_LIB} COMPONENT Runtime 
               ARCHIVE DESTINATION ${INSTALL_LIB} COMPONENT Library )
   endforeach()
-  install ( EXPORT ${PROJECT_NAME}-targets DESTINATION ${INSTALL_LIB}/cmake )
+  install ( EXPORT ${targetsFile} DESTINATION ${INSTALL_LIB}/cmake )
 endmacro ()
 
 # helper function for various install_* functions, for PATTERN/REGEX args.
