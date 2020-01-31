@@ -166,7 +166,10 @@ macro ( install_library )
               LIBRARY DESTINATION ${INSTALL_LIB} COMPONENT Runtime 
               ARCHIVE DESTINATION ${INSTALL_LIB} COMPONENT Library )
   endforeach()
-  install ( EXPORT ${targetsFile} DESTINATION ${INSTALL_LIB}/cmake )
+  if ( DEFINED XP_NAMESPACE )
+    set ( nameSpace NAMESPACE ${XP_NAMESPACE}:: )
+  endif ()
+  install ( EXPORT ${targetsFile} DESTINATION ${INSTALL_LIB}/cmake ${nameSpace} )
 endmacro ()
 
 # helper function for various install_* functions, for PATTERN/REGEX args.
