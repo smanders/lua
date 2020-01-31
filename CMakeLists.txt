@@ -139,6 +139,7 @@ set(targetsFile ${PROJECT_NAME}${ver}-targets)
 ## BUILD
 # Create lua library
 add_library ( liblua ${SRC_CORE} ${SRC_LIB} ${LUA_DLL_RC} ${LUA_DEF} )
+target_include_directories ( liblua PUBLIC $<INSTALL_INTERFACE:$<INSTALL_PREFIX>/${INSTALL_INC}${verDir}> )
 target_link_libraries ( liblua ${LIBS} )
 set_target_properties ( liblua PROPERTIES OUTPUT_NAME lua${ver} CLEAN_DIRECT_OUTPUT 1 )
 if ( LUA_BUILD_AS_DLL )
